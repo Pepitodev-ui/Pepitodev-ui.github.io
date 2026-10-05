@@ -200,6 +200,10 @@ const nonRootApksToggle = document.querySelector('[data-toggle="nonrootapks"]');
 const nonRootApksSection = document.getElementById('nonRootApksSection');
 const nonRootApksMinimize = document.querySelector('[data-minimize="nonrootapks"]');
 
+const fridaToggle = document.querySelector('[data-toggle="frida"]');
+const fridaSection = document.getElementById('fridaSection');
+const fridaMinimize = document.querySelector('[data-minimize="frida"]');
+
 if (rootApksToggle) {
     rootApksToggle.addEventListener('click', () => {
         rootApksSection.classList.toggle('collapsed');
@@ -225,6 +229,20 @@ if (nonRootApksMinimize) {
         e.stopPropagation();
         nonRootApksSection.classList.toggle('minimized');
         nonRootApksSection.classList.add('collapsed');
+    });
+}
+
+if (fridaToggle) {
+    fridaToggle.addEventListener('click', () => {
+        fridaSection.classList.toggle('collapsed');
+    });
+}
+
+if (fridaMinimize) {
+    fridaMinimize.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fridaSection.classList.toggle('minimized');
+        fridaSection.classList.add('collapsed');
     });
 }
 
