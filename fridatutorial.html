@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frida Setup - MoonyGB's stuff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <a href="index.html" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+            </a>
+            <h1 class="title">Frida Setup</h1>
+        </header>
+
+        <main class="container">
+            <div class="tutorial-content smooth">
+                <h2 class="tutorial-title"># Complete Guide: Setting Up Frida on VR Devices (Root & No-Root) and Termux</h2>
+                <p class="step-text">This guide covers the essential methods to deploy the <strong>Frida Dynamic Instrumentation Toolkit</strong> on Android-based Virtual Reality environments (such as Meta Quest) and how to compile it natively inside Termux.</p>
+
+                <h3 class="subsection-title">Method 1: No-Root VR Setup (Frida Gadget)</h3>
+                <p class="step-text">Since retail VR headsets do not allow a global running <code class="code-block">frida-server</code> daemon without elevated privileges, we must inject <strong>Frida Gadget</strong> directly inside the target application's <code class="code-block">.apk</code> package.</p>
+
+                <h4 class="subsection-subtitle">Prerequisites on Your PC</h4>
+                <div class="step">
+                    <p class="step-text">1. <strong>Developer Mode:</strong> Enable this from the Meta Quest mobile app under your headset's settings.</p>
+                    <p class="step-text">2. <strong>Connection Tools:</strong> Download and install <a href="https://sidequestvr.com" target="_blank" rel="noopener noreferrer">SideQuest</a> or the <a href="https://developer.android.com/tools/releases/platform-tools" target="_blank" rel="noopener noreferrer">Android SDK Platform Tools (ADB)</a>.</p>
+                    <p class="step-text">3. <strong>Dependencies:</strong> Ensure you have <strong>Python 3</strong> and <strong>Java (JDK)</strong> installed on your operating system.</p>
+                </div>
+
+                <h4 class="subsection-subtitle">Step-by-Step Execution</h4>
+                <div class="step">
+                    <p class="step-text"><strong>1. Install Objection:</strong></p>
+                    <p class="step-text">Open your PC terminal and install the runtime mobile exploration framework:</p>
+                    <code class="code-block">pip install objection</code>
+                </div>
+                <div class="step">
+                    <p class="step-text"><strong>2. Extract and Patch the APK:</strong></p>
+                    <p class="step-text">Pull the target VR application APK from your headset using ADB or SideQuest. Then, execute the automated patcher:</p>
+                    <code class="code-block">objection patchapk --source target_vr_app.apk</code>
+                    <p class="step-text" style="margin-top: 0.75rem;"><em>Objection will identify the architecture, automatically download the correct <code class="code-block">libfrida-gadget.so</code> binary, inject it into the APK's library folder, and re-sign the file automatically.</em></p>
+                </div>
+                <div class="step">
+                    <p class="step-text"><strong>3. Install and Launch:</strong></p>
+                    <p class="step-text">Install the newly modified APK back onto your headset by running:</p>
+                    <code class="code-block">adb install target_vr_app.objection.apk</code>
+                    <p class="step-text" style="margin-top: 0.75rem;">When you open the application inside your VR headset, the screen will stay frozen on black. This is expected behavior; it means Frida Gadget is pausing execution and waiting for your PC client to connect.</p>
+                </div>
+
+                <h3 class="subsection-title">Method 2: Installing and Compiling Frida in Termux</h3>
+                <p class="step-text">If you are using a secondary device with <strong>Root access</strong>, you can compile and interact with Frida directly from your local environment inside <a href="https://termux.dev" target="_blank" rel="noopener noreferrer">Termux</a>.</p>
+
+                <h4 class="subsection-subtitle">Step 1: Update the Environment and Install Dependencies</h4>
+                <div class="step">
+                    <p class="step-text">Open Termux and prepare the native compilation tools by running:</p>
+                    <code class="code-block">pkg update -y && pkg upgrade -y
+pkg install wget git python build-essential binutils openssl -y</code>
+                </div>
+
+                <h4 class="subsection-subtitle">Step 2: Download the Frida Core DevKit</h4>
+                <div class="step">
+                    <p class="step-text">Due to Termux's unique linked-library environment, we need to compile the Python extensions using the DevKit corresponding to your CPU architecture:</p>
+                    <p class="step-text">1. Identify your processor type in Termux with: <code class="code-block">uname -m</code> (it will usually return <code class="code-block">aarch64</code> or <code class="code-block">arm64</code>).</p>
+                    <p class="step-text">2. Go to the <a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener noreferrer">Official Frida Releases on GitHub</a>.</p>
+                    <p class="step-text">3. Locate the <code class="code-block">frida-core-devkit-*.tar.xz</code> file matching your architecture (e.g., <code class="code-block">frida-core-devkit-XX.X.XX-android-arm64.tar.xz</code>), copy the link, and download it:</p>
+                    <code class="code-block">mkdir ~/frida-core && cd ~/frida-core
+wget &lt;PASTE_YOUR_GITHUB_DOWNLOAD_LINK_HERE&gt;
+tar -xf frida-core-devkit-*.tar.xz</code>
+                </div>
+
+                <h4 class="subsection-subtitle">Step 3: Link Paths and Install via PIP</h4>
+                <div class="step">
+                    <p class="step-text">Assign the environment variable so the Python installer can locate the native binaries you just extracted:</p>
+                    <code class="code-block">export FRIDA_CORE_DEVKIT=~/frida-core
+echo "export FRIDA_CORE_DEVKIT=~/frida-core" >> ~/.bashrc</code>
+                    <p class="step-text" style="margin-top: 0.75rem;">Now, install the client tools by running:</p>
+                    <code class="code-block">pip install frida frida-tools</code>
+                    <p class="step-text" style="margin-top: 0.75rem;"><em>(Note: This process will compile the native modules directly on your device and might take a few minutes to complete).</em></p>
+                </div>
+
+                <h4 class="subsection-subtitle">Step 4: Deploy frida-server with Root</h4>
+                <div class="step">
+                    <p class="step-text">1. Download the standalone <code class="code-block">frida-server</code> binary (matching the exact version installed in the previous step) from the <a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener noreferrer">Frida GitHub Releases</a>.</p>
+                    <p class="step-text">2. Transfer it to your device's internal storage and move it to an executable directory:</p>
+                    <code class="code-block">su
+cp /sdcard/Download/frida-server-android-arm64 /data/local/tmp/frida-server
+chmod 755 /data/local/tmp/frida-server</code>
+                    <p class="step-text" style="margin-top: 0.75rem;">3. Initialize the background daemon:</p>
+                    <code class="code-block">/data/local/tmp/frida-server &amp;</code>
+                </div>
+
+                <p class="step-text" style="margin-top: 1.5rem;">To verify that the communication is successful, open a new session tab in Termux and type <code class="code-block">frida-ps -U</code>. If set up correctly, it will immediately display the live system process list.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
