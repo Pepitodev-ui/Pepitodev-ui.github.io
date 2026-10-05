@@ -520,6 +520,13 @@ body {
     color: var(--text-primary);
 }
 
+.subsection-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--accent);
+}
+
 .button-group {
     display: flex;
     gap: 1rem;
