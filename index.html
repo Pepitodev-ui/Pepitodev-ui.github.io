@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonyGB's stuff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1 class="title">MoonyGB's stuff</h1>
+            <button class="settings-btn" id="settingsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Settings</span>
+            </button>
+            <button class="settings-btn" id="musicToggle">
+                <svg id="muteIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <svg id="unmuteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span id="musicText">Music: Off</span>
+            </button>
+        </header>
+
+        <main class="container">
+            <div class="sections">
+                <div class="section" id="rootSection">
+                    <div class="section-header" data-toggle="root">
+                        <button class="toggle-btn" aria-label="Toggle section">
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <h2 class="section-title">Root</h2>
+                        <button class="minimize-btn" data-minimize="root" aria-label="Minimize section">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="section-content" id="rootContent">
+                        <div class="card">
+                            <p class="card-text">Root related stuff and tutorials.</p>
+                            <div class="button-group">
+                                <a href="roottutorial.html" class="btn primary smooth">
+                                    Root tutorial!
+                                </a>
+                                <a href="rootrecoverytut.html" class="btn primary smooth">
+                                    Root recovery
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="rootApksSection">
+                    <div class="section-header" data-toggle="rootapks">
+                        <button class="toggle-btn" aria-label="Toggle section">
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <h2 class="section-title">Root apks</h2>
+                        <button class="minimize-btn" data-minimize="rootapks" aria-label="Minimize section">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="section-content" id="rootApksContent">
+                        <div class="card">
+                            <p class="card-text">Root only applications and mods.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="nonRootApksSection">
+                    <div class="section-header" data-toggle="nonrootapks">
+                        <button class="toggle-btn" aria-label="Toggle section">
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <h2 class="section-title">Non-root apks.</h2>
+                        <button class="minimize-btn" data-minimize="nonrootapks" aria-label="Minimize section">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="section-content" id="nonRootApksContent">
+                        <div class="card">
+                            <p class="card-text">Applications that work without root access.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content smooth">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="close-btn" id="closeSettings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <h4>Theme</h4>
+                        <p class="setting-desc">Choose your color style</p>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">Background Type</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="bgType" value="solid" checked>
+                                <span>Solid Color</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="bgType" value="gradient">
+                                <span>Gradient</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-group" id="solidSettings">
+                        <label class="setting-label">Primary Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="primaryColor" value="#4c00ff">
+                            <span class="color-value" id="primaryColorValue">#4c00ff</span>
+                        </div>
+                    </div>
+                    <div class="setting-group hidden" id="gradientSettings">
+                        <label class="setting-label">Gradient Colors</label>
+                        <div class="color-picker">
+                            <input type="color" id="gradStart" value="#4c00ff">
+                            <span>Start</span>
+                            <span class="color-value" id="gradStartValue">#4c00ff</span>
+                        </div>
+                        <div class="color-picker">
+                            <input type="color" id="gradEnd" value="#9d7cff">
+                            <span>End</span>
+                            <span class="color-value" id="gradEndValue">#9d7cff</span>
+                        </div>
+                        <label class="setting-label">Direction</label>
+                        <select id="gradDir" class="select">
+                            <option value="to bottom">Top to Bottom</option>
+                            <option value="to top">Bottom to Top</option>
+                            <option value="to right">Left to Right</option>
+                            <option value="to left">Right to Left</option>
+                            <option value="135deg">Diagonal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ghost" id="resetSettings">Reset</button>
+                    <button class="btn primary" id="applySettings">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="music.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

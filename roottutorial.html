@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROOT TUT - MoonyGB's stuff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <a href="index.html" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+            </a>
+            <h1 class="title">Root Tutorial</h1>
+        </header>
+
+        <main class="container">
+            <div class="tutorial-content smooth">
+                <h2 class="tutorial-title">ROOT TUT ON singularity</h2>
+                
+                <div class="step">
+                    <p class="step-text"><strong>1. Install the <a href="https://github.com/Lumince/singularity/releases" target="_blank" rel="noopener noreferrer">Root service ".apk"</a></strong></p>
+                </div>
+                
+                <div class="step">
+                    <p class="step-text"><strong>2. Go to singularity, Set up ADB stuff. i dont need to explane cuz that has its own tutorial</strong></p>
+                </div>
+                
+                <div class="step">
+                    <p class="step-text"><strong>3. Wait until the "ROOT NOW" button turns blue the click it.</strong></p>
+                </div>
+                
+                <div class="warning-box">
+                    <h3 class="warning-title">WARNING!!</h3>
+                    <p class="warning-text">This kind of root can risk your vr getting <strong>soft bricked</strong>, not hard bricked it can still be fixed<br>
+                    Make sure to back up ur data incase it gets bricked.</p>
+                    <p class="warning-note"><em>Continuing...</em></p>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="info-box">
+                    <p class="info-text"><strong>[INFO] Your headset will soft reboot then turned back on</strong></p>
+                    <p class="step-text"><strong>4. If it fully reboots and it dosent bootloop. <em>You have rooted</em></strong></p>
+                    <p class="info-text"><strong>[INFO] Go to singularity on Unknown sources, it if says "Root access granted" For more test. Go to termux or the build-in terminal and trype "whoami", if it says ROOT, You officialy have root access.</strong></p>
+                </div>
+
+                <div class="gallery-section">
+                    <h3 class="gallery-title">More about rooting:</h3>
+                    <div class="gallery-container" id="gallery">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
+    <script src="gallery.js"></script>
+</body>
+</html>

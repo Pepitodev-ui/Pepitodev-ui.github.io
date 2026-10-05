@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Recovery - MoonyGB's stuff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <a href="index.html" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+            </a>
+            <h1 class="title">Root Recovery</h1>
+        </header>
+
+        <main class="container">
+            <div class="tutorial-content smooth">
+                <h2 class="tutorial-title">Unbricking any Meta Quest via ADB Sideload</h2>
+                
+                <p class="step-text">If you bricked your headset trying to root it or flash custom firmware and it is stuck in a bootloop, this is how you actually save it using ADB Sideload.</p>
+                
+                <h3 class="subsection-title">Golden Rules (Read before you mess up further)</h3>
+                
+                <div class="step">
+                    <p class="step-text"><strong>1.</strong> The Anti-Rollback Rule: The Quest bootloader strictly blocks older firmware. The update file you download must be equal to or newer than the firmware version your headset had right before it bricked. If you try to flash an older one, it will throw a "Signature verification failed" error.</p>
+                </div>
+                
+                <div class="step">
+                    <p class="step-text"><strong>2.</strong> 50% Battery Minimum: If the headset dies in the middle of writing systemic OS blocks, the motherboard is permanently dead.</p>
+                </div>
+                
+                <div class="step">
+                    <p class="step-text"><strong>3.</strong> Use a Real Cable: The thin white charging cable that came in the box sucks at heavy data transfers. Use a high-quality USB-C data cable (like an Anker cable, the official Link cable, or a modern phone data cable).</p>
+                </div>
+                
+                <h3 class="subsection-title">Step 1: Get the Tools on Your PC</h3>
+                
+                <div class="step">
+                    <p class="step-text">To talk to the Quest's internal recovery menu, you need the official Android files.</p>
+                    <p class="step-text">1. Download the official Google Android SDK Platform-Tools Package.</p>
+                    <p class="step-text">2. Unzip the file. It will give you a folder named platform-tools. To keep paths simple, drag this folder directly to the root of your drive (e.g., C:\platform-tools).</p>
+                </div>
+                
+                <h3 class="subsection-title">Step 2: Grab the Clean Firmware File</h3>
+                
+                <div class="step">
+                    <p class="step-text">Meta does not leave historical firmware links out in the open, but the community mirrors them.</p>
+                    <p class="step-text">1. Look up Reddit threads like r/OculusQuest Megathread Firmware or check community archives like cocaine.trade or ptrpa.ws.</p>
+                    <p class="step-text">2. Download the Full OTA Firmware file that exactly matches your Quest model.</p>
+                    <p class="step-text">3. Move that downloaded file (it will be a few gigabytes) inside your platform-tools folder.</p>
+                    <p class="step-text">4. The Ultimate Sanity Saver: Rename that ridiculously long file to just update.zip.</p>
+                </div>
+                
+                <h3 class="subsection-title">Step 3: Put the Quest into Sideload Mode</h3>
+                
+                <div class="step">
+                    <p class="step-text">1. Turn off the headset completely (if it is stuck looping on the logo, hold the power button down for 15 solid seconds to force-kill it).</p>
+                    <p class="step-text">2. Press and hold the Power Button and Volume Down (-) button at the same time.</p>
+                    <p class="step-text">3. Keep holding until a black screen with text commands (the USB Update Mode menu) pops up inside the lenses. Release the buttons.</p>
+                    <p class="step-text">4. Use the physical volume buttons to scroll down and highlight Sideload Update.</p>
+                    <p class="step-text">5. Press the Power Button once to select it.</p>
+                    <p class="step-text">6. The screens will go dark. Look at the outer right edge of the headset: the tiny LED status light should turn solid purple. This means it is waiting for the file. Plug it into your PC now.</p>
+                </div>
+                
+                <h3 class="subsection-title">Step 4: Flash the Operating System</h3>
+                
+                <div class="step">
+                    <p class="step-text">1. Open your computer's command terminal:</p>
+                    <p class="step-text">   • Windows: Press Windows Key + R, type cmd, and hit Enter.</p>
+                    <p class="step-text">   • Mac/Linux: Open your system Terminal app.</p>
+                    <p class="step-text">2. Navigate to your tools folder by typing this and hitting Enter: <code class="code-block">cd C:\platform-tools</code></p>
+                    <p class="step-text">3. Check if your PC actually sees the headset by typing: <code class="code-block">adb devices</code></p>
+                    <p class="step-text">   • If it prints a string of numbers followed by the word sideload, you are good to go.</p>
+                    <p class="step-text">   • Mac/Linux Users: You have to put ./ before every command (e.g., ./adb devices).</p>
+                    <p class="step-text">4. Start the installation by running: <code class="code-block">adb sideload update.zip</code></p>
+                    <p class="step-text">5. You will see a percentage counter start ticking up on your computer screen. Do not touch or wiggle the cable.</p>
+                </div>
+                
+                <h3 class="subsection-title">Step 5: The Sensor Nudge Trick (Do Not Skip)</h3>
+                
+                <div class="step">
+                    <p class="step-text">• Quest headsets automatically sleep if they do not detect movement. If the percentage on your PC freezes out of nowhere (usually around 47% or 94%), the headset went to sleep. Give the headset a gentle nudge or a slight shake every minute to keep the internal sensors awake so it keeps installing.</p>
+                    <p class="step-text">• When it finishes, your terminal will say something like Total xfer: 1.00x and the headset will reboot itself.</p>
+                    <p class="step-text">• The first boot will take a minute or two, but it will load right back into the factory-clean setup screen.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
